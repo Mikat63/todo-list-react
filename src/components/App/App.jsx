@@ -47,7 +47,11 @@ function App() {
     setTodos(newTodoList);
   }
 
-  const doneCount = todos.filter((task) => task.done).length;
+  // counter of task length and done length
+  const doneTodos = todos.filter((task) => task.done !== false).length;
+  const totalTodos = todos.length;
+
+  // const for filter tasks
 
   return (
     <div className="min-h-screen bg-slate-50">
@@ -55,12 +59,9 @@ function App() {
       <main className="max-w-xl mx-auto px-4 py-8 flex flex-col gap-6">
         <AddTaskForm submit={addTask} />
 
-        {todos.length > 0 && (
-          <p className="text-sm text-slate-500 px-1">
-            {doneCount} / {todos.length} tâche{todos.length > 1 ? "s" : ""}{" "}
-            terminée{doneCount > 1 ? "s" : ""}
-          </p>
-        )}
+        <p className="text-center">
+          {doneTodos}/{totalTodos} tâches terminées
+        </p>
 
         <ul className="flex flex-col gap-2">
           {todos.map((task) => (
@@ -74,12 +75,6 @@ function App() {
             />
           ))}
         </ul>
-
-        {todos.length === 0 && (
-          <p className="text-center text-slate-400 text-sm py-10">
-            Aucune tâche pour l'instant — ajoute-en une ci-dessus.
-          </p>
-        )}
       </main>
     </div>
   );
