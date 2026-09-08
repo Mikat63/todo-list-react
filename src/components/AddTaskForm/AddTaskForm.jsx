@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Button from "../Button/Button";
 
 function AddTaskForm({ submit }) {
   const [inputTask, setInputTask] = useState("");
@@ -22,12 +23,11 @@ function AddTaskForm({ submit }) {
         placeholder="Qu'est-ce qu'il y a à faire ?"
         className="flex-1 min-w-0 px-3 py-2.5 text-slate-700 placeholder:text-slate-400 focus:outline-none"
       />
-      <button
+      <Button
         type="submit"
-        className="shrink-0 bg-indigo-600 text-white rounded-xl px-4 py-2.5 font-medium hover:bg-indigo-700 active:bg-indigo-800 transition-colors focus:outline-none focus:scale-105"
-      >
-        Ajouter
-      </button>
+        cssClass="shrink-0 bg-indigo-600 text-white rounded-xl px-4 py-2.5 font-medium hover:bg-indigo-700 active:bg-indigo-800 transition-colors focus:outline-none focus:scale-105"
+        title="Ajouter"
+      />
     </form>
   );
 }

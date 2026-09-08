@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Header from "../Header/Header.jsx";
 import TaskItem from "../TaskItem/TaskItem.jsx";
 import AddTaskForm from "../AddTaskForm/AddTaskForm.jsx";
+import Button from "../Button/Button.jsx";
 
 function App() {
   // load localstorage during first loading
@@ -14,6 +15,7 @@ function App() {
   }
 
   const [todos, setTodos] = useState(() => parseLocalStorage());
+  const [selectFilter, setSelectFilter] = useState("all");
 
   // update localstorage if todos change
   useEffect(() => {
@@ -52,6 +54,21 @@ function App() {
   const totalTodos = todos.length;
 
   // const for filter tasks
+  const activeTask = todos.filter((task) => task.done === false);
+  const finishedTask = todos.filter((task) => task.done === true);
+
+  // variable contains selected tasks for return
+  function returnSelected() {
+    if (selectFilter === "activated") {
+      return activeTask;
+    } else if (selectFilter === "finished") {
+      return finishedTask;
+    } else {
+      return todos;
+    }
+  }
+
+  const selectedTasks = returnSelected();
 
   return (
     <div className="min-h-screen bg-slate-50">
@@ -59,12 +76,48 @@ function App() {
       <main className="max-w-xl mx-auto px-4 py-8 flex flex-col gap-6">
         <AddTaskForm submit={addTask} />
 
+        <div className="flex gap-2 justify-center">
+          <Button
+            type="button"
+            cssClass={
+              " border border-indigo-200 rounded-full px-4 py-1.5 text-sm font-medium text-indigo-700 hover:bg-indigo-100 active:bg-indigo-300 active:scale-95 transition-colors focus:outline-none focus:scale-105 " +
+              (selectFilter === "all"
+                ? "scale-110 bg-indigo-200"
+                : "bg-indigo-50")
+            }
+            title="Tous"
+            onClick={() => setSelectFilter("all")}
+          />
+          <Button
+            type="button"
+            cssClass={
+              "border border-indigo-200 rounded-full px-4 py-1.5 text-sm font-medium text-indigo-700 hover:bg-indigo-100 active:bg-indigo-300 active:scale-95 transition-colors focus:outline-none focus:scale-105 " +
+              (selectFilter === "activated"
+                ? "scale-110 bg-indigo-200"
+                : "bg-indigo-50")
+            }
+            title="Actives"
+            onClick={() => setSelectFilter("activated")}
+          />
+          <Button
+            type="button"
+            cssClass={
+              "border border-indigo-200 rounded-full px-4 py-1.5 text-sm font-medium text-indigo-700 hover:bg-indigo-100 active:bg-indigo-300 active:scale-95 transition-colors focus:outline-none focus:scale-105 " +
+              (selectFilter === "finished"
+                ? "scale-110 bg-indigo-200"
+                : "bg-indigo-50")
+            }
+            title="Terminées"
+            onClick={() => setSelectFilter("finished")}
+          />
+        </div>
+
         <p className="text-center">
           {doneTodos}/{totalTodos} tâches terminées
         </p>
 
         <ul className="flex flex-col gap-2">
-          {todos.map((task) => (
+          {selectedTasks.map((task) => (
             <TaskItem
               key={task.id}
               id={task.id}
