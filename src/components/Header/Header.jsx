@@ -8,7 +8,7 @@ function Header({ cssClass, onClick, icon, title }) {
       <button
         onClick={onClick}
         type="button"
-        className="absolute left-4 top-1/2 -translate-y-1/2 w-9 h-9 rounded-xl bg-white/15 flex items-center justify-center hover:bg-white/25 transition-colors cursor-pointer"
+        className="absolute left-4 top-1/2 -translate-y-1/2 w-9 h-9 rounded-xl bg-white/15 flex items-center justify-center hover:bg-white/25 transition-colors cursor-pointer focus:bg-white/25 focus:scale-110 outline-none"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"

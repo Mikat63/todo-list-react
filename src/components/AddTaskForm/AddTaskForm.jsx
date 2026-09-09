@@ -21,7 +21,7 @@ function AddTaskForm({ submit }) {
         type="text"
         id="addTask"
         placeholder="Qu'est-ce qu'il y a à faire ?"
-        className="flex-1 min-w-0 px-3 py-2.5 text-slate-700 placeholder:text-slate-400 focus:outline-none"
+        className="flex-1 min-w-0 px-3 py-2.5 text-slate-700 placeholder:text-slate-400 focus:outline-none focus:scale-105"
       />
       <Button
         type="submit"
