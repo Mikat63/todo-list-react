@@ -24,6 +24,13 @@ function Home() {
           title="Quote Generator"
           onClick={() => navigate("/QuoteGenerator")}
         />
+
+        <Button
+          type="button"
+          cssClass="bg-linear-to-r from-indigo-600 to-violet-600 rounded-2xl shadow-sm px-6 py-4 font-medium text-white transition-all hover:shadow-lg hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-indigo-300 focus:scale-105 cursor-pointer"
+          title="Favorite contacts"
+          onClick={() => navigate("/favoriteContacts")}
+        />
       </div>
     </main>
   );
