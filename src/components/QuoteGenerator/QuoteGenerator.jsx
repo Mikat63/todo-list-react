@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import Header from "../Header/Header";
 import { useState } from "react";
 import QuoteCard from "../QuoteCard/QuoteCard";
+import Button from "../Button/Button";
 
 function QuoteGenerator() {
   const [quotes, setQuotes] = useState([
@@ -30,11 +31,10 @@ function QuoteGenerator() {
     },
   ]);
 
+  const [generateRandomQuote, setGenerateRandomQuote] = useState(0);
+
   // for back home since Header component
   const navigate = useNavigate();
-
-  // quote index to show
-  const currentQuoteIndex = 0;
 
   return (
     <>
@@ -55,10 +55,19 @@ function QuoteGenerator() {
         title="Quote Generator"
       />
 
-      <main className="flex flex-col p-9">
+      <main className="flex flex-col p-9 items-center gap-9">
         <QuoteCard
-          quote={quotes[currentQuoteIndex].quote}
-          author={quotes[currentQuoteIndex].author}
+          quote={quotes[generateRandomQuote].quote}
+          author={quotes[generateRandomQuote].author}
+        />
+
+        <Button
+          type="button"
+          cssClass="w-[200px] bg-linear-to-r from-amber-500 to-rose-500 rounded-2xl shadow-sm px-6 py-4 font-medium text-white transition-all hover:shadow-lg hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-indigo-300 focus:scale-105 cursor-pointer"
+          title="Changer"
+          onClick={() =>
+            setGenerateRandomQuote(Math.floor(Math.random() * quotes.length))
+          }
         />
       </main>
     </>
